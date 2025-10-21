@@ -4,8 +4,6 @@ import { useState } from "react";
 export default function ContactForm() {
   const [status, setStatus] = useState<string | null>(null);
 
-  const FORMSPREE_ACTION = "https://formspree.io/f/xjkaznro";
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("A enviar...");
@@ -13,19 +11,23 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const response = await fetch(FORMSPREE_ACTION, {
-      method: "POST",
-      body: data,
-      headers: {
-        Accept: "application/json",
-      },
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: data,
+      });
 
-    if (response.ok) {
-      setStatus("✅ Obrigado! A sua mensagem foi enviada com sucesso.");
-      form.reset();
-    } else {
-      setStatus("❌ Ocorreu um erro ao enviar. Tente novamente.");
+      if (response.ok) {
+        setStatus("✅ Obrigado! A sua mensagem foi enviada com sucesso.");
+        form.reset();
+      } else {
+        const err = await response.json();
+        console.error("Erro:", err);
+        setStatus("❌ Ocorreu um erro ao enviar. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      setStatus("❌ Ocorreu um erro ao enviar. Verifique a ligação.");
     }
   };
 
@@ -68,9 +70,6 @@ export default function ContactForm() {
           className="mt-1 w-full rounded-xl border border-neutral-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
         />
       </div>
-
-      <input type="hidden" name="_subject" value="Novo pedido de orçamento — Remodelações PT" />
-      <input type="hidden" name="_language" value="pt" />
 
       <button className="btn-primary w-full" type="submit">
         Enviar
