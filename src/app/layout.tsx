@@ -9,10 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 export const metadata: Metadata = {
-title: "Aqui à Tua Remodelação — Obras & Reabilitação",
+title: "Carvalho&GomesConstrução",
 description: "Remodelações gerais, pinturas, canalização e eletricidade. Orçamentos grátis.",
 openGraph: {
-title: "Aqui à Tua Remodelação — Obras & Reabilitação",
+title: "Carvalho&GomesConstrução",
 description: "Remodelações gerais, pinturas, canalização e eletricidade. Orçamentos grátis.",
 type: "website",
 },
