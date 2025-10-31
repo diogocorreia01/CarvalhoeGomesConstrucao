@@ -1,3 +1,5 @@
+"use client";
+
 import BeforeAfter from "@/components/BeforeAfter";
 
 export default function Gallery() {
