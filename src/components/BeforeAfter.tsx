@@ -62,7 +62,7 @@ export default function BeforeAfter({
       {/* Card com proporção fixa -> todos ficarão iguais */}
       <div
         ref={containerRef}
-        className={`relative w-full overflow-hidden rounded-2xl shadow-lg border border-neutral-200 bg-neutral-100 aspect-[${aspect}]`}
+        className="relative w-full overflow-hidden rounded-2xl shadow-lg border border-neutral-200 bg-neutral-100 aspect-[4/3]"
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
         role="slider"
